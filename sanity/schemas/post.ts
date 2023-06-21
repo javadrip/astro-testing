@@ -9,9 +9,24 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
+      description: 'Ideally between 15 and 70 characters',
+      validation: (Rule) => [
+        Rule.required().min(15).warning('The title is probably too short.'),
+        Rule.max(70).warning('Shorter titles are usually better.'),
+      ],
     }),
     defineField({
-      name: 'slug',
+      name: 'postMetaDescription',
+      title: 'Meta description',
+      type: 'text',
+      description: 'Ideally between 70 and 160 characters',
+      validation: (Rule) => [
+        Rule.required().min(70).warning('Add in more details.'),
+        Rule.max(160).warning('Content beyond 160 characters might be truncated.'),
+      ],
+    }),
+    defineField({
+      name: 'postSlug',
       title: 'Slug',
       type: 'slug',
       options: {
@@ -32,6 +47,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+        },
+      ],
     }),
     defineField({
       name: 'categories',
@@ -40,13 +62,8 @@ export default defineType({
       of: [{type: 'reference', to: {type: 'category'}}],
     }),
     defineField({
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
-    }),
-    defineField({
-      name: 'body',
-      title: 'Body',
+      name: 'content',
+      title: 'Content',
       type: 'blockContent',
     }),
   ],
