@@ -6,9 +6,18 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'category',
+      title: 'Category',
       type: 'string',
+    }),
+    defineField({
+      name: 'categorySlug',
+      title: 'Category slug',
+      type: 'slug',
+      options: {
+        source: 'category',
+        maxLength: 96,
+      },
     }),
     defineField({
       name: 'description',
