@@ -11,8 +11,8 @@ export default defineType({
       type: 'string',
     }),
     defineField({
-      name: 'slug',
-      title: 'Slug',
+      name: 'authorSlug',
+      title: 'Author slug',
       type: 'slug',
       options: {
         source: 'name',
@@ -26,6 +26,13 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative Text',
+        },
+      ],
     }),
     defineField({
       name: 'bio',
