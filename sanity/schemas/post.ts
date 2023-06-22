@@ -41,8 +41,8 @@ export default defineType({
       to: {type: 'author'},
     }),
     defineField({
-      name: 'mainImage',
-      title: 'Main image',
+      name: 'featuredImage',
+      title: 'Featured image',
       type: 'image',
       options: {
         hotspot: true,

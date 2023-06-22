@@ -1,5 +1,6 @@
 ---
 import { useSanityClient } from "astro-sanity";
+import Image from "astro/components/Image.astro";
 
 // The queries for category and categorySlug looks different from what technologies like Next and React use.
 // This is because Astro is a static site generator and the data is fetched at build time, while Next and React
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
       "categorySlug": categories[0]->categorySlug.current,
       "authorName": author->name,
       "authorSlug": author->authorSlug.current,
-      "mainImage": mainImage.asset->url,
+      "featuredImage": featuredImage.asset->url,
     }`
   );
 
@@ -35,7 +36,7 @@ export async function getStaticPaths() {
       categories,
       authorName,
       authorSlug,
-      mainImage,
+      featuredImage,
     }) => {
       return {
         params: {
@@ -51,7 +52,7 @@ export async function getStaticPaths() {
           categories,
           authorName,
           authorSlug,
-          mainImage,
+          featuredImage,
         },
       };
     }
@@ -68,7 +69,7 @@ const {
   categories,
   authorName,
   authorSlug,
-  mainImage,
+  featuredImage,
 } = Astro.props;
 ---
 
@@ -82,4 +83,5 @@ const {
 <p>categories: {categories}</p>
 <p>authorName: {authorName}</p>
 <p>authorSlug: {authorSlug}</p>
-<p>mainImage: {mainImage}</p>
+<p>featuredImage: {featuredImage}</p>
+<Image src={featuredImage} alt={title} />
