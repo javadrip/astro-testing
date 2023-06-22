@@ -12,5 +12,8 @@
   "dependencies": {
     "astro": "^2.6.6",
     "astro-sanity": "^1.1.7"
+  },
+  "devDependencies": {
+    "prettier-plugin-astro": "^0.10.0"
   }
 }

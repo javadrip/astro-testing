@@ -1,0 +1,85 @@
+---
+import { useSanityClient } from "astro-sanity";
+
+// The queries for category and categorySlug looks different from what technologies like Next and React use.
+// This is because Astro is a static site generator and the data is fetched at build time, while Next and React
+// are dynamic and the data is fetched at runtime.
+// Astro's approach allows you to pre-render pages with the necessary data during the build process, avoiding the need for query string parameters in GROQ queries.
+export async function getStaticPaths() {
+  const posts = await useSanityClient().fetch(
+    `*[_type == "post"]{
+      _id,
+      _createdAt,
+      _updatedAt,
+      title,
+      postMetaDescription,
+      "postSlug": postSlug.current,
+      "category": categories[0]->category,
+      "categories": categories[]->category,
+      "categorySlug": categories[0]->categorySlug.current,
+      "authorName": author->name,
+      "authorSlug": author->authorSlug.current,
+      "mainImage": mainImage.asset->url,
+    }`
+  );
+
+  return posts.map(
+    ({
+      categorySlug,
+      postSlug,
+      _createdAt,
+      _updatedAt,
+      title,
+      postMetaDescription,
+      category,
+      categories,
+      authorName,
+      authorSlug,
+      mainImage,
+    }) => {
+      return {
+        params: {
+          categorySlug,
+          postSlug,
+        },
+        props: {
+          _createdAt,
+          _updatedAt,
+          title,
+          postMetaDescription,
+          category,
+          categories,
+          authorName,
+          authorSlug,
+          mainImage,
+        },
+      };
+    }
+  );
+}
+
+// const { categorySlug, postSlug } = Astro.params;
+const {
+  _createdAt,
+  _updatedAt,
+  title,
+  postMetaDescription,
+  category,
+  categories,
+  authorName,
+  authorSlug,
+  mainImage,
+} = Astro.props;
+---
+
+<h1>{title}</h1>
+
+<p>_createdAt: {_createdAt}</p>
+<p>_updatedAt: {_updatedAt}</p>
+<p>title: {title}</p>
+<p>postMetaDescription: {postMetaDescription}</p>
+<p>category: {category}</p>
+<p>categories: {categories}</p>
+<p>authorName: {authorName}</p>
+<p>authorSlug: {authorSlug}</p>
+<p>mainImage: {mainImage}</p>
