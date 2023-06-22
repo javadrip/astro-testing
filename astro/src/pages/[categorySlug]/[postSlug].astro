@@ -1,6 +1,5 @@
 ---
 import { useSanityClient } from "astro-sanity";
-import Image from "astro/components/Image.astro";
 
 // The queries for category and categorySlug looks different from what technologies like Next and React use.
 // This is because Astro is a static site generator and the data is fetched at build time, while Next and React
@@ -84,4 +83,3 @@ const {
 <p>authorName: {authorName}</p>
 <p>authorSlug: {authorSlug}</p>
 <p>featuredImage: {featuredImage}</p>
-<Image src={featuredImage} alt={title} />
