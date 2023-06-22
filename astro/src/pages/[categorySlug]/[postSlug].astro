@@ -20,6 +20,7 @@ export async function getStaticPaths() {
       "authorName": author->name,
       "authorSlug": author->authorSlug.current,
       "featuredImage": featuredImage.asset->url,
+      "featuredImageAlt": featuredImage.alt,
     }`
   );
 
@@ -36,6 +37,7 @@ export async function getStaticPaths() {
       authorName,
       authorSlug,
       featuredImage,
+      featuredImageAlt,
     }) => {
       return {
         params: {
@@ -52,6 +54,7 @@ export async function getStaticPaths() {
           authorName,
           authorSlug,
           featuredImage,
+          featuredImageAlt,
         },
       };
     }
@@ -69,6 +72,7 @@ const {
   authorName,
   authorSlug,
   featuredImage,
+  featuredImageAlt,
 } = Astro.props;
 ---
 
@@ -83,3 +87,4 @@ const {
 <p>authorName: {authorName}</p>
 <p>authorSlug: {authorSlug}</p>
 <p>featuredImage: {featuredImage}</p>
+<p>featuredImageAlt: {featuredImageAlt}</p>
