@@ -24,28 +24,14 @@
     <script type="module">
       import { defineConfig, renderStudio } from "https://esm.sh/sanity";
       import { deskTool } from "https://esm.sh/sanity/desk";
+      import { schema } from "../../sanity/schema";
 
       const config = defineConfig({
         plugins: [deskTool()],
         projectId: "vqhz93qr",
         dataset: "production",
         apiVersion: "2023-06-06",
-        schema: {
-          types: [
-            {
-              type: "document",
-              name: "post",
-              title: "Post",
-              fields: [
-                {
-                  type: "string",
-                  name: "title",
-                  title: "Title",
-                },
-              ],
-            },
-          ],
-        },
+        schema,
         basePath: "/admin",
       });
       renderStudio(document.getElementById("sanityStudio"), config);
