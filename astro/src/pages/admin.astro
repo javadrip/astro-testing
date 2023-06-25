@@ -12,7 +12,7 @@
       }
       html,
       body,
-      #app {
+      #sanityStudio {
         height: 100%;
         margin: 0;
         overflow: hidden;
@@ -20,7 +20,7 @@
     </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="sanityStudio"></div>
     <script type="module">
       import { defineConfig, renderStudio } from "https://esm.sh/sanity";
       import { deskTool } from "https://esm.sh/sanity/desk";
@@ -48,7 +48,7 @@
         },
         basePath: "/admin",
       });
-      renderStudio(document.getElementById("app"), config);
+      renderStudio(document.getElementById("sanityStudio"), config);
     </script>
   </body>
 </html>
