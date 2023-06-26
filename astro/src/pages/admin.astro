@@ -24,10 +24,11 @@
     <script type="module">
       import { defineConfig, renderStudio } from "https://esm.sh/sanity";
       import { deskTool } from "https://esm.sh/sanity/desk";
+      import { visionTool } from "https://esm.sh/@sanity/vision";
       import { schema } from "../../sanity/schema";
 
       const config = defineConfig({
-        plugins: [deskTool()],
+        plugins: [deskTool(), visionTool()],
         projectId: "vqhz93qr",
         dataset: "production",
         apiVersion: "2023-06-06",
